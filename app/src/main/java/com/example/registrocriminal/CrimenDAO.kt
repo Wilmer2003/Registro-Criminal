@@ -3,7 +3,6 @@ package com.example.registrocriminal
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
-import androidx.room.Update
 import kotlinx.coroutines.flow.Flow
 import java.util.UUID
 
@@ -18,9 +17,4 @@ interface CrimenDAO {
 
     @Insert
     suspend fun ingresarCrimen(crimen: Crimen)
-
-    @Update
-    suspend fun actualizarCrimen(crimen: Crimen)
-
-
 }

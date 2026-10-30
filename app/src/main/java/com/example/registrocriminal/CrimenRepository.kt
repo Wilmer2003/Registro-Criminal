@@ -23,10 +23,6 @@ class CrimenRepository private constructor(context: Context) {
         database.crimenDAO().ingresarCrimen(crimen)
     }
 
-    suspend fun actualizarCrimen(crimen: Crimen) {
-        database.crimenDAO().actualizarCrimen(crimen)
-    }
-
     companion object {
         private var INSTANCIA: CrimenRepository? = null
 
