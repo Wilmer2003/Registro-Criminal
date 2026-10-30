@@ -4,7 +4,7 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 
-@Database(entities = [Crimen::class], version = 1, exportSchema = false)
+@Database(entities = [Crimen::class], version = 1)
 @TypeConverters(CrimenTypeConverter::class)
 abstract class CrimenDatabase : RoomDatabase() {
 

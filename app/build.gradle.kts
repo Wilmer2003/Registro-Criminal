@@ -42,6 +42,12 @@ android {
 
 }
 
+kapt {
+    arguments {
+        arg("room.schemaLocation", "$projectDir/schemas")
+    }
+}
+
 dependencies {
     // Dependencias básicas estables
     implementation(libs.androidx.core.ktx)
