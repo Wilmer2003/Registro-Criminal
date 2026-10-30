@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/contenedor_fragmento"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:baselineAligned="false">
+
+    <!-- LADO IZQUIERDO: Lista de Crímenes -->
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/contenedor_lista"
+        android:name="com.example.registrocriminal.ListaCrimenesFragment"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="4" />
+
+    <!-- LADO DERECHO: Detalle del Crimen -->
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/contenedor_detalle"
+        android:name="com.example.registrocriminal.CrimenFragment"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="6" />
+
+</LinearLayout>
+
+

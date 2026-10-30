@@ -1,0 +1,8 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme sin el NoActionBar -->
+    <style name="Base.Theme.RegistroCriminal" parent="Theme.Material3.DayNight">
+        <!-- Forzamos el color verde azulado del profesor -->
+        <item name="colorPrimary">#008577</item>
+        <item name="colorPrimaryVariant">#00574B</item>
+    </style>
+</resources>
