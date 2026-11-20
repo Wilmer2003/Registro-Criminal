@@ -1,14 +1,20 @@
 <resources>
     <string name="app_name">RegistroCriminal</string>
+    <string name="lbl_titulo">Título</string>
+    <string name="lbl_detalle_crimen">Detalles</string>
+    <string name="lbl_crimen_resuelto">Resuelto</string>
     <string name="pista_titulo_crimen">Ingreso un título para el crimen</string>
     <string name="etiqueta_titulo_crimen">Título</string>
     <string name="etiqueta_detalle_crimen">Detalle</string>
     <string name="etiqueta_crimen_resuelto">Resuelto</string>
+    <string name="titulo_date_picker">Fecha del crimen</string>
     
     
     
     <string name="boton_contactar_policia">Contactar Policía</string>
     <string name="fecha_crimen">Fecha crimen</string>
     <string name="titulo_crimen">Título crimen</string>
+
+
 
 </resources>

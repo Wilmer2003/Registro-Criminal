@@ -12,6 +12,9 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.registrocriminal.databinding.FragmentListaCrimenBinding
 import kotlinx.coroutines.launch
+import androidx.navigation.fragment.findNavController
+import java.util.Date
+import java.util.UUID
 
 class ListaCrimenesFragment : Fragment() {
 
@@ -39,7 +42,26 @@ class ListaCrimenesFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 listaCrimenesViewModel.crimenes.collect { crimenes ->
-                    binding.crimenRecyclerView.adapter = CrimenAdapter(crimenes)
+                    // SI LA BASE DE DATOS ESTÁ VACÍA, INSERTAMOS VARIOS CRÍMENES DIFERENTES
+                    if (crimenes.isEmpty()) {
+                        val crimenesIniciales = listOf(
+                            Crimen(id = UUID.randomUUID(), titulo = "Robo a tienda comercial", fecha = Date(), resuelto = false),
+                            Crimen(id = UUID.randomUUID(), titulo = "Hurto de vehículo deportivo", fecha = Date(), resuelto = true),
+                            Crimen(id = UUID.randomUUID(), titulo = "Impresora de oficina dañada", fecha = Date(), resuelto = false),
+                            Crimen(id = UUID.randomUUID(), titulo = "Intento de asalto en vía pública", fecha = Date(), resuelto = false)
+                        )
+
+                        crimenesIniciales.forEach { crimen ->
+                            listaCrimenesViewModel.ingresarCrimen(crimen)
+                        }
+                    }
+
+                    // ASIGNAMOS EL ADAPTADOR CON LA NAVEGACIÓN A CADA UNO
+                    binding.crimenRecyclerView.adapter = CrimenAdapter(crimenes) { crimenId ->
+                        findNavController().navigate(
+                            ListaCrimenesFragmentDirections.mostrarCrimen(crimenId)
+                        )
+                    }
                 }
             }
         }

@@ -10,27 +10,29 @@ import com.example.registrocriminal.databinding.ItemListaCrimenMayorBinding
 import android.text.format.DateFormat
 import android.graphics.Color
 import androidx.core.content.ContextCompat
+import java.util.UUID
+
 class CrimenHolder(
     val binding: ItemListaCrimenBinding
 ) : RecyclerView.ViewHolder(binding.root) {
-    fun enlazar(crimen: Crimen) {
+
+    fun enlazar(crimen: Crimen, onCrimenPulsado: (crimenId: UUID) -> Unit) {
         binding.apply {
             tituloCrimen.text = crimen.titulo
             fechaCrimen.text = DateFormat.format("dd/MM/yyyy HH:mm", crimen.fecha).toString()
+
             root.setOnClickListener {
-                Toast.makeText(
-                    root.context,
-                    "${crimen.titulo}",
-                    Toast.LENGTH_LONG).show()
+                onCrimenPulsado(crimen.id)
             }
+
             imgCrimenResuelto.visibility = if (crimen.resuelto) View.VISIBLE else View.GONE
+
             root.setBackgroundColor(
                 if (crimen.resuelto) Color.TRANSPARENT
                 else ContextCompat.getColor(root.context, R.color.durazno)
             )
         }
     }
-
 }
 
 
@@ -57,7 +59,8 @@ class CrimenMayorHolder(
 }
 
 class CrimenAdapter(
-    private val crimenes: List<Crimen>
+    private val crimenes: List<Crimen>,
+    private val onCrimenPulsado: (crimenId: UUID) -> Unit
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     companion object {
@@ -78,15 +81,13 @@ class CrimenAdapter(
         }
     }
 
-
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val crimen = crimenes[position]
         when (holder) {
             is CrimenMayorHolder -> holder.enlazar(crimen)
-            is CrimenHolder -> holder.enlazar(crimen)
+            is CrimenHolder -> holder.enlazar(crimen, onCrimenPulsado)
         }
     }
-
 
     override fun getItemCount() = crimenes.size
 }
